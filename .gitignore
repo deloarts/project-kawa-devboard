@@ -1,0 +1,8 @@
+**/.vscode
+**/.sync
+**/build/**/latest/**
+**/dev/test_server/bin/*.bin
+*.code-workspace
+*.rsls
+*.b#*
+*.s#*

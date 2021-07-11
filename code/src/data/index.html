@@ -1,0 +1,195 @@
+<!-- 
+    Project Kawa Client | CAPTIVE PORTAL HTML
+
+    Date        2021.07.11
+    Author      Philip Delorenzo
+    License     None
+    Repo        https://github.com/deloarts/project-kawa-devboard
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Kawa Setup</title>
+
+        <link type="text/css" rel="stylesheet" href="/css/style.css?v=0.0.0">
+        <link type="image/x-icon" rel="icon" href="/img/favicon.ico">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+    </head>
+
+    <body class="white bg-grey">
+        <main id="app" v-cloak>
+            <div class="hide" :class="{ 'show': vueLoaded }">
+
+                <div class="overlay" v-if="overlay.show" v-on:click="onclick_reset_overlay">
+                    <div class="overlay-mc">
+                        <spinner v-if="!overlay.title && !overlay.text"></spinner>
+                        <span class="overlay-title">{{ overlay.title}}</span>
+                        <hr v-if="overlay.title && overlay.text">
+                        <span class="overlay-text">{{ overlay.text}}</span>
+                    </div>
+                </div>
+                
+                <div class="header" :class="{ 'blur': overlay.show }">
+                    <table class="header">
+                        <tr>
+                            <td class="header">{{ titleText }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="content" :class="{ 'blur': overlay.show }">
+                    <table class="input">
+                        <tr>
+                            <td class="input">
+                                <missing v-if="show.missing.ssid" tooltip="SSID not set"></missing>
+                            </td>
+                            <td class="input">
+                                <select v-model="settings.ssid">
+                                    <option disabled value="">Select Wifi</option>
+                                    <option v-for="item in selectable.ssid" v-bind:value="item">{{ item }}</option>
+                                </select>
+                            </td>
+                            <td class="input">
+                                <warning v-if="show.warning.ssid" tooltip="Network not available"></warning>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input">
+                                <missing v-if="show.missing.password" tooltip="Password not set"></missing>
+                            </td>
+                            <td class="input">
+                                <input type="text" v-model="settings.password" v-on:keyup.enter="commit" placeholder="Wifi Password">
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input">
+                                <missing v-if="show.missing.address" tooltip="Address not set"></missing>
+                            </td>
+                            <td class="input">
+                                <input type="text" v-model="settings.address" v-on:keyup.enter="commit" placeholder="Server Address">
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input">
+                                <missing v-if="show.missing.port" tooltip="Port not set"></missing>
+                            </td>
+                            <td class="input">
+                                <input type="number" v-model="settings.port" v-on:keyup.enter="commit" placeholder="Server Port">
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input">
+                                <missing v-if="show.missing.sensor" tooltip="Sensor not set"></missing>
+                            </td>
+                            <td class="input">
+                                <select v-model="settings.sensor">
+                                    <option disabled value="">Select Sensor</option>
+                                    <option v-for="item in selectable.sensor" v-bind:value="item">{{ item }}</option>
+                                </select>
+                            </td>
+                            <td class="input">
+                                <warning v-if="show.warning.sensor" tooltip="Sensor not available"></warning>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input">
+                                <missing v-if="show.missing.interval" tooltip="Interval not set"></missing>
+                            </td>
+                            <td class="input">
+                                <select v-model="settings.interval">
+                                    <option disabled value="">Select Sleep Interval</option>
+                                    <option v-for="item in selectable.interval" v-bind:value="item">{{ item }} minutes deep sleep</option>
+                                </select>
+                            </td>
+                            <td class="input">
+                                <warning v-if="show.warning.interval" tooltip="Value not available"></warning>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input"></td>
+                            <td class="input">
+                                <button v-on:click="commit">Commit Changes</button>
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input"></td>
+                            <td class="input">
+                                <button v-on:click="discard">Discard Changes</button>
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input"></td>
+                            <td class="input">
+                                <button v-on:click="restart">Restart Controller</button>
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input"></td>
+                            <td class="input">
+                                <button v-on:click="reset">Factory Reset</button>
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                    </table>
+
+                    <table class="info">
+                        <tr v-for="item in device">
+                            <td class="info"></td>
+                            <td class="info">{{ item.name }}</td>
+                            <td class="info">{{ item.value }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer" :class="{ 'blur': overlay.show }">
+                    <table class="footer">
+                        <tr>
+                            <td class="footer">
+                                <a href="http://www.deloarts.com" target="new">a deloarts project</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </body>
+
+    <footer>
+        <script type="text/x-template" id="spinner-template">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </script>
+        <script type="text/x-template" id="svg-missing">
+            <div class="tooltip">
+                <svg class="svg-small" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M11,15H13V17H11V15M11,7H13V13H11V7" />
+                </svg>
+                <span class="tooltiptext">{{ tooltip }}</span>
+            </div>
+        </script>
+        <script type="text/x-template" id="svg-warning">
+            <div class="tooltip">
+                <svg  class="svg-small" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" />
+                </svg>
+                <span class="tooltiptext">{{ tooltip }}</span>
+            </div>
+        </script>
+
+        <script type="application/javascript" src="/js/vue.js?v=2.6.11"></script>
+        <script type="application/javascript" src="/js/axios.js?v=0.18.0"></script>
+        <script type="application/javascript" src="/js/main.js?v=0.0.0"></script>
+    </footer>
+</html>

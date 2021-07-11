@@ -1,0 +1,367 @@
+/*
+    Project Kawa Client | CAPTIVE PORTAL CSS
+
+    Date        2021.07.11
+    Author      Philip Delorenzo
+    License     None
+    Repo        https://github.com/deloarts/project-kawa-devboard
+
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Segoe UI", "Arial";
+	font-size: 16px;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.show {
+    opacity: 100%;
+}
+
+a {
+    color: white;
+}
+
+table {
+	cursor: default;
+}
+
+select {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    padding-left: 6px;
+	background-color: rgba(30, 30, 30, 1);
+    border-radius: 3px;
+    border-color: rgba(0, 122, 204, 1);
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+select:hover {
+	background-color: rgba(35, 35, 35, 1);
+    transition: all 0.2s ease;
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    padding-left: 10px;
+	background-color: transparent;
+    border-radius: 3px;
+    border-color: rgba(0, 122, 204, 1);
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    text-align: left;
+    transition: all 0.2s ease;
+    
+    /* fix overshooting */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+input:hover {
+	background-color: rgba(35, 35, 35, 1);
+    transition: all 0.2s ease;
+}
+
+button {
+    width: 100%;
+    height: 96%;
+    border: none;
+    border-radius: 3px;
+    background-color: rgba(0, 122, 204, 1);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+	background-color: rgb(5, 140, 230);
+    transition: all 0.2s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover,
+button:hover {
+	border-color: rgb(5, 140, 230);
+    transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+	border-color: rgb(20, 161, 255);
+    transition: all 0.2s ease;
+}
+
+.header {
+    width: 100%;
+	background-color: rgba(0, 122, 204, 1);
+}
+
+table.header {
+	border: none;
+    border-collapse: collapse;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+td.header {
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+	background-color: rgba(0, 122, 204, 1);
+  }
+
+table.footer {
+	border: none;
+    border-collapse: collapse;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+td.footer {
+    height: 15px;
+    font-size: 10px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.content {
+    width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+    text-align: center;
+	overflow: auto;
+}
+
+table.input {
+	border: none;
+    margin-left: auto; 
+    margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+td.input {
+    height: 35px;
+	font-size: 12px;
+    padding: 1px;
+	text-align: center;
+    vertical-align: middle;
+	color: rgb(200, 200, 200);
+}
+
+td:nth-child(1).input, td:nth-child(3).input {
+    width: 40px;
+}
+
+td:nth-child(2).input {
+    width: 240px;
+}
+
+table.info {
+	border: none;
+    margin-left: auto; 
+    margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+td.info {
+	height: 14px;
+	font-size: 12px;
+	text-align: left;
+    vertical-align: middle;
+	color: rgb(170, 170, 170);
+}
+
+td:nth-child(1).info {
+    width: 40px;
+}
+
+td:nth-child(2).info {
+	width: 80px;
+}
+
+td:nth-child(3).info {
+	width: 200px;
+}
+
+.svg-small {
+    padding-top: 2px;
+    height: 18px;
+    width: 18px;
+    color: rgba(0, 122, 204, 1);
+    transition: all 0.1s ease-in;
+}
+
+/* --- COLORS --- */
+
+.white {
+	color:  white;
+}
+
+.blue {
+	color: rgba(0, 122, 204, 1);
+}
+
+.grey {
+	color: rgba(30, 30, 30, 1);
+}
+
+.bg-white {
+	background-color: white;
+}
+
+.bg-blue {
+	background-color: rgba(0, 122, 204, 1);
+}
+
+.bg-grey {
+	background-color: rgba(30, 30, 30, 1);
+}
+
+/* --- SCROLL BAR --- */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(50, 50, 50);
+    transition: all 0.4s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(60, 60, 60);
+    transition: all 0.2s ease;
+}
+
+/* --- OVERLAY --- */
+
+.overlay {
+	z-index: 100;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+    color: white;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.overlay-mc {
+	position: absolute;
+	display: inline-block;
+    text-align: center;
+	width: 180px;
+	height: auto;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.overlay-title {
+    font-weight: thin;
+    font-size: 20px;
+}
+
+.overlay-text {
+    font-weight: thin;
+    font-size: 14px;
+}
+
+.blur {
+    filter: blur(2px);
+}
+
+/* --- LOADING SPINNER --- */
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tooltip text */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 130px;
+    background-color: rgba(0, 122, 204, 1);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    margin-left: 10px;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 1;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
