@@ -116,7 +116,7 @@ The housing is made with a 3D printer, files can be found inside the projects ca
 
 ### 4.1 Used software
 
-- The firmware is created with [VS Code](https://code.visualstudio.com/download) with the [Arduino-Core](https://www.arduino.cc/en/software).
+- The firmware is created with [VS Code](https://code.visualstudio.com/download) with the [Arduino-Core](https://www.arduino.cc/en/software) (extension: CTRL+P -> *ext install vscode-arduino*))
 - The content of the filesystem is compiled with [mkspiffs](https://github.com/igrr/mkspiffs) and uploaded with [esptool](https://github.com/espressif/esptool).
 - The pcb design is done with [Autodesk Eagle 9.6.2](https://www.autodesk.de/products/eagle/free-download), but may be continued with [EasyEDA](https://easyeda.com/) due to a better library-to-production support.
 
