@@ -35,7 +35,7 @@
     #define serial_print_hex(x) Serial.print(x, 16)
     #define serial_print_hex_ln(x) Serial.println(x, 16)
 #else
-    #define mode "production"
+    #define software_state "production"
 
     #define serial_init(x)
 

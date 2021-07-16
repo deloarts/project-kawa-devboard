@@ -29,6 +29,7 @@ Documentation for the **Project Kawa Devboard**. This repository contains everyt
   - [2 Usage](#2-usage)
     - [2.1 LED indicator](#21-led-indicator)
     - [2.2 Setup wifi](#22-setup-wifi)
+    - [2.3 Reading sensor data](#23-reading-sensor-data)
   - [3 Hardware](#3-hardware)
     - [3.1 Board](#31-board)
     - [3.2 Housing](#32-housing)
@@ -94,6 +95,10 @@ Note: The captive portal may not work properly, if so try:
 - Click **yes** if your device asks you to stay connected (happens when the device notices, that no internet connection is available)
 - Refresh the captive portal redirection page (sometimes the script or the stylesheet aren't loaded properly)
 - Enter the IP address **1.2.3.4** manually into a browser
+
+### 2.3 Reading sensor data
+
+Once the wifi credentials are set up correct the device starts its main task: reading sensor data. There is no further interaction needed.
 
 ## 3 Hardware
 
@@ -185,6 +190,13 @@ Please note: Some include-paths are only valid if you have chosen the standard p
 Can be found inside the pcb-folder. Must not be added to EAGLE if you don't plan on changing the board.
 
 ## 5 Building & Debugging
+
+Tested and released firmware and filesystem versions can be found inside the respective folder
+
+- [Firmware](code/build/firmware/)
+- [Filesystem](code/build/filesystem/)
+
+Those firmware-versions with the letter **d** after the version indicator are debug-versions. This means that you can hookup a serial-to-usb chip and get debug messages printed to a serial monitor. Baud-rate is always 115200. Versions without that letter are for production environment, you won't get any messages printed to the serial port.
 
 ### 5.1 Initial upload
 
