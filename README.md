@@ -245,6 +245,7 @@ All content on this repository is provided **as is**. None of these components h
 
 - [ ] Fix: Wifi settings are overwritten when filesystem gets updated.
 - [ ] Fix: Slow/laggy captive portal.
+- [ ] Fix: Replace FS with LittleFS.
 - [ ] Add: Switch sensor.
 - [ ] Add: Air quality sensor.
 - [ ] Add: Rain sensor (amount and state).
