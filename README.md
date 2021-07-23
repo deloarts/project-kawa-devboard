@@ -3,7 +3,7 @@
 Documentation for the **Project Kawa Devboard**. This repository contains everything the Wifi-Client requires, including code, circuit design and housing.
 
 ![state](https://img.shields.io/badge/State-Pre%20Alpha-brown.svg)
-![version](https://img.shields.io/badge/Firmware-0.0.0-orange.svg)
+![version](https://img.shields.io/badge/Firmware-0.0.0d-orange.svg)
 ![version](https://img.shields.io/badge/Filesystem-0.0.0-orange.svg)
 
 [![made-with](https://img.shields.io/badge/Made%20with-Arduino-blue.svg)](https://www.arduino.cc/)
@@ -98,7 +98,68 @@ Note: The captive portal may not work properly, if so try:
 
 ### 2.3 Reading sensor data
 
-Once the wifi credentials are set up correct the device starts its main task: reading sensor data. There is no further interaction needed.
+Once the wifi credentials are set up correct the device starts its main task: reading sensor data. There is no further interaction needed. The data is sent as json, example:
+
+```json
+{
+  "device": {
+    "id": "179309432879183923",
+    "boardname": "devboard",
+    "firmware_version": "0.0.0",
+    "filesystem_version": "0.0.0",
+    "mode": "production",
+    "sensor": {
+      "status": true,
+      "name": "BME280"
+    },
+    "battery": {
+      "ok": true,
+      "value": 3.30,
+      "unit": "V"
+    },
+    "interval": {
+      "value": 3600,
+      "unit": "s"
+    },
+    "connection": {
+      "value": 7.334,
+      "unit": "s"
+    }
+  },
+  "network": {
+    "ssid": "the_network_ssid",
+    "dbm": -78,
+    "quality": 44,
+    "hostname": "kawa_179309432879183923",
+    "ip": "192.168.0.200",
+    "mac": "00:80:41:ae:fd:7e"
+  },
+  "data": {
+    "temperature": {
+      "available": true,
+      "value": 25.2,
+      "unit": "°C"
+    },
+    "pressure": {
+      "available": true,
+      "value": 989.2,
+      "unit": "mBar"
+    },
+    "altitude": {
+      "available": true,
+      "value": 433,
+      "unit": "m"
+    },
+    "humidity": {
+      "available": true,
+      "value": 44.23,
+      "unit": "%"
+    }
+  }
+}
+```
+
+The maximum size of the json is 2048 bytes.
 
 ## 3 Hardware
 
