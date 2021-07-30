@@ -3,7 +3,7 @@
 Documentation for the **Project Kawa Devboard**. This repository contains everything the Wifi-Client requires, including code, circuit design and housing.
 
 ![state](https://img.shields.io/badge/State-Pre%20Alpha-brown.svg)
-![version](https://img.shields.io/badge/Firmware-0.0.0d-orange.svg)
+![version](https://img.shields.io/badge/Firmware-0.0.0-orange.svg)
 ![version](https://img.shields.io/badge/Filesystem-0.0.0-orange.svg)
 
 [![made-with](https://img.shields.io/badge/Made%20with-Arduino-blue.svg)](https://www.arduino.cc/)
@@ -159,7 +159,19 @@ Once the wifi credentials are set up correct the device starts its main task: re
 }
 ```
 
-The maximum size of the json is 2048 bytes.
+The server must answer with a json of the following format:
+
+```json
+value = {
+    "status": "ok",
+    "update_firmware": false,
+    "new_firmware": "0.0.0",
+    "update_spiffs": false,
+    "new_spiffs": "0.0.0"
+}
+```
+
+Due to the OTA-update functionality the client must know when to update. This is done by toggling the respective keys to **true**. With this the client will instantly download the given new version. The maximum size of the json is 2048 bytes.
 
 ## 3 Hardware
 
