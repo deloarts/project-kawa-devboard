@@ -50,7 +50,7 @@ def request_post() -> Response:
     console.log(f'post request from {request.remote_addr!r}:')
     payload = json.loads(request.data)
     console.log(payload)
-    return Response(json.dumps(value), mimetype = 'application/json') 
+    return Response(json.dumps(value), mimetype = 'application/json', status=201) 
 
 @server.route('/update', methods=['GET', 'POST'])
 def request_update() -> Response:
