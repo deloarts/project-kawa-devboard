@@ -39,6 +39,7 @@ void read_config()
             DynamicJsonDocument json_doc_device(2048);
             deserializeJson(json_doc_device, root["device"].as<String>());
             JsonObject j_device = json_doc_device.as<JsonObject>();
+            const char* device_location = j_device["location"];
             const char* device_sensor = j_device["sensor"];
             int device_interval = j_device["wake_interval"];
 
@@ -46,6 +47,7 @@ void read_config()
             strcpy(cfg.password, wifi_password);
             strcpy(cfg.address, wifi_address);
             strcpy(cfg.sensor, device_sensor);
+            strcpy(cfg.location, device_location);
             cfg.port = wifi_port;
             cfg.interval = device_interval;
             serial_info_ln("Got data from config.");
@@ -66,6 +68,7 @@ void write_config()
     wifi["address"] = cfg.address;
     wifi["port"] = cfg.port;
 
+    device["location"] = cfg.location;
     device["sensor"] = cfg.sensor;
     device["wake_interval"] = cfg.interval;
 
@@ -79,6 +82,7 @@ void write_config()
 
 void clear_config()
 {
+    cfg.location[0] = (char)0;
     cfg.ssid[0] = (char)0;
     cfg.password[0] = (char)0;
     cfg.address[0] = (char)0;

@@ -49,6 +49,7 @@ void handle_request_get()
     DynamicJsonDocument doc(2048);
     // settings json: settings can be altered
     JsonObject j_settings = doc.createNestedObject("settings");
+    j_settings["location"] = cfg.location;
     j_settings["ssid"] = cfg.ssid;
     j_settings["password"] = cfg.password;
     j_settings["address"] = cfg.address;
@@ -131,6 +132,7 @@ void handle_request_post()
         deserializeJson(json_doc_body, j_root["body"].as<String>());
         JsonObject j_body = json_doc_body.as<JsonObject>();
 
+        const char* json_location = j_body["location"];
         const char* json_ssid = j_body["ssid"];
         const char* json_password = j_body["password"];
         const char* json_address = j_body["address"];
@@ -138,6 +140,7 @@ void handle_request_post()
         int json_interval = j_body["interval"];
         int json_port = j_body["port"];
 
+        strcpy(cfg.location, json_location);
         strcpy(cfg.ssid, json_ssid);
         strcpy(cfg.password, json_password);
         strcpy(cfg.address, json_address);
@@ -146,6 +149,7 @@ void handle_request_post()
         cfg.interval = json_interval;
 
         serial_info_ln("Got new config:");
+        serial_enum_ln("Location: " + String(cfg.location));
         serial_enum_ln("SSID:     " + String(cfg.ssid));
         serial_enum_ln("Password: " + String(cfg.password));
         serial_enum_ln("Server:   " + String(cfg.address));

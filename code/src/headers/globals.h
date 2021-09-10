@@ -10,6 +10,7 @@
 
 struct config
 {
+    char location[100];
     char ssid[100];
     char password[100];
     char address[100];

@@ -43,6 +43,7 @@ new Vue({
                 sensor: false
             },
             missing: {
+                location: false,
                 ssid: false,
                 password: false,
                 address: false,
@@ -53,6 +54,7 @@ new Vue({
         },
 
         settings: {
+            location: "",
             ssid: "",
             password: "",
             address: "",
@@ -116,7 +118,10 @@ new Vue({
         },
 
         commit() {
-            if (this.settings.ssid == "" || this.settings.password == "" || this.settings.address == "" || this.settings.port == "" || this.settings.sensor == "" || this.settings.interval == "") {
+            if (this.settings.location == "" || this.settings.ssid == "" || this.settings.password == "" || this.settings.address == "" || this.settings.port == "" || this.settings.sensor == "" || this.settings.interval == "") {
+                if (this.settings.location == "") {
+                    this.show.missing.location = true;
+                }
                 if (this.settings.ssid == "") {
                     this.show.missing.ssid = true;
                 }

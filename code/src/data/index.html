@@ -47,6 +47,15 @@
                     <table class="input">
                         <tr>
                             <td class="input">
+                                <missing v-if="show.missing.location" tooltip="Location not set"></missing>
+                            </td>
+                            <td class="input">
+                                <input type="text" v-model="settings.location" v-on:keyup.enter="commit" placeholder="Location">
+                            </td>
+                            <td class="input"></td>
+                        </tr>
+                        <tr>
+                            <td class="input">
                                 <missing v-if="show.missing.ssid" tooltip="SSID not set"></missing>
                             </td>
                             <td class="input">
