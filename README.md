@@ -2,9 +2,11 @@
 
 Documentation for the **Project Kawa Devboard**. This repository contains everything the Wifi-Client requires, including code, circuit design and housing.
 
-![state](https://img.shields.io/badge/State-Pre%20Alpha-brown.svg)
-![version](https://img.shields.io/badge/Firmware-0.0.0-orange.svg)
-![version](https://img.shields.io/badge/Filesystem-0.0.0-orange.svg)
+![state](https://img.shields.io/badge/State-Alpha-brown.svg)
+![version](https://img.shields.io/badge/Firmware-0.1.0-orange.svg)
+![version](https://img.shields.io/badge/Filesystem-0.1.0-orange.svg)
+![version](https://img.shields.io/badge/PCB-Rev0-orange.svg)
+![version](https://img.shields.io/badge/Housing-Rev0-orange.svg)
 
 [![made-with](https://img.shields.io/badge/Made%20with-Arduino-blue.svg)](https://www.arduino.cc/)
 [![arduino-version](https://img.shields.io/badge/Version-1.8.15-orange.svg)](https://www.arduino.cc/en/software)
@@ -30,6 +32,7 @@ Documentation for the **Project Kawa Devboard**. This repository contains everyt
     - [2.1 LED indicator](#21-led-indicator)
     - [2.2 Setup wifi](#22-setup-wifi)
     - [2.3 Reading sensor data](#23-reading-sensor-data)
+    - [2.4 Status codes](#24-status-codes)
   - [3 Hardware](#3-hardware)
     - [3.1 Board](#31-board)
     - [3.2 Housing](#32-housing)
@@ -51,15 +54,16 @@ Documentation for the **Project Kawa Devboard**. This repository contains everyt
     - [7.1 Firmware](#71-firmware)
     - [7.2 Filesystem](#72-filesystem)
     - [7.3 PCB](#73-pcb)
+    - [7.4 Housing](#74-housing)
   - [8 To Do](#8-to-do)
 
 ## 1 Description
 
-**Project Kawa Devboard** is part of the **Project Kawa** environment. This client is designed to test new sensors or new firmware, to debug code or find optimizations in the PCB layout. The latest version may not work without failures, nightly build.
+**Project Kawa Devboard** is part of the **Project Kawa** environment. This client is designed to test new sensors or new firmware, to debug code or find optimizations in the PCB layout. The latest version may not work without properly -> nightly builds.
 
 This repository contains mostly code that is in development, as well as hardware-design that might only work under special conditions or differ from this documentation. This is not an out-of-the-box solution and requires some knowledge in a variety of fields. If you don't have an education in the field of electronics you should not proceed with this project, you might harm yourself or create damage by the risk of fire. Further you should be comfortable working with VS Code Workspaces.
 
-Please note: All paths and settings are described for Windows. Will be expanded in the future.
+Please note: All paths and settings are described for Windows. Will be updated in the future.
 
 ## 2 Usage
 
@@ -105,53 +109,36 @@ Once the wifi credentials are set up correct the device starts its main task: re
   "device": {
     "id": "179309432879183923",
     "boardname": "devboard",
-    "firmware_version": "0.0.0",
-    "filesystem_version": "0.0.0",
+    "firmware_version": "0.1.0",
+    "filesystem_version": "0.1.0",
     "mode": "production",
-    "sensor": {
-      "status": true,
-      "name": "BME280"
-    },
-    "battery": {
-      "ok": true,
-      "value": 3.30,
-      "unit": "V"
-    },
-    "interval": {
-      "value": 3600,
-      "unit": "s"
-    },
-    "connection": {
-      "value": 7.334,
-      "unit": "s"
-    }
-  },
-  "network": {
+    "sensor_status": true,
+    "sensor_name": "BMP280",
+    "battery_status": true,
+    "battery_value": 3.30,
+    "sleep_interval": 3600,
+    "connection_time": 7.334,
     "ssid": "the_network_ssid",
     "dbm": -78,
     "quality": 44,
     "hostname": "kawa_179309432879183923",
-    "ip": "192.168.0.200",
-    "mac": "00:80:41:ae:fd:7e"
+    "ip_address": "192.168.0.200",
+    "mac_address": "00:80:41:ae:fd:7e"
   },
   "data": {
     "temperature": {
-      "available": true,
       "value": 25.2,
       "unit": "°C"
     },
     "pressure": {
-      "available": true,
       "value": 989.2,
       "unit": "mBar"
     },
     "altitude": {
-      "available": true,
       "value": 433,
       "unit": "m"
     },
     "humidity": {
-      "available": true,
       "value": 44.23,
       "unit": "%"
     }
@@ -159,7 +146,7 @@ Once the wifi credentials are set up correct the device starts its main task: re
 }
 ```
 
-The server must answer with a json of the following format:
+The server must answer with status code 201 and a json of the following format:
 
 ```json
 value = {
@@ -172,6 +159,14 @@ value = {
 ```
 
 Due to the OTA-update functionality the client must know when to update. This is done by toggling the respective keys to **true**. With this the client will instantly download the given new version. The maximum size of the json is 2048 bytes.
+
+### 2.4 Status codes
+
+The devices accepts the following status codes as answer when posting data:
+
+- **201**: data has been added to the database
+- **406**: data has not been added to the database
+- **500**: server error
 
 ## 3 Hardware
 
@@ -316,13 +311,19 @@ All content on this repository is provided **as is**. None of these components h
 
 ### 7.1 Firmware
 
+**v0.1.0**: Added location and updated api.  
 **v0.0.0**: Creation.
 
 ### 7.2 Filesystem
 
+**v0.1.0**: Added location.  
 **v0.0.0**: Creation.
 
 ### 7.3 PCB
+
+**Rev0**: Creation.
+
+### 7.4 Housing
 
 **Rev0**: Creation.
 

@@ -9,8 +9,8 @@
 */
 
 #define board_name "devboard"
-#define firmware_version "0.0.0d"
-#define filesystem_version "0.0.0"
+#define firmware_version "0.1.0d"
+#define filesystem_version "0.1.0"
 
 /*
     If mode is set to DEBUG, don't forget to add the 'd' to the
