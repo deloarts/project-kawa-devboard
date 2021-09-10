@@ -9,14 +9,14 @@
 */
 
 #define board_name "devboard"
-#define firmware_version "0.1.0d"
+#define firmware_version "0.1.0"
 #define filesystem_version "0.1.0"
 
 /*
     If mode is set to DEBUG, don't forget to add the 'd' to the
     firmware-version when building the final binary.
 */
-#define DEBUG
+// #define DEBUG
 #ifdef DEBUG
     #define software_state "debug"
 
