@@ -77,6 +77,8 @@
 #define ONE_WIRE_BUS 14
 
 // Power & deep sleep
+#define battery_available true
+#define battery_full 3.4
 #define battery_too_low 3.1
 #define default_sleep_interval 60 //minutes
 
@@ -90,16 +92,16 @@
 #define unit_humidity "%"
 
 // Sensor types
+#define type_na "N/A"
 #define type_bme280 "BME280"
 #define type_ds18b20 "DS18B20"
-#define type_na "N/A"
 
 // Sensor corrections
 #define altitude_p0 1013.25
 
 // Server API
-#define api_post_data "/data"
-#define api_get_update "/update"
+#define api_post_data "/api/data"
+#define api_get_update "/api/updates"
 
 // Internal API
 #define api_get_config "/get"

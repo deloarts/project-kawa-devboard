@@ -49,7 +49,8 @@ void _update_handler(bool update_firmware, String new_version)
     {
         update_url.concat("?what=firmware");
         update_url.concat("&for=" + String(board_name));
-        update_url.concat("&get=" + String(new_version));
+        update_url.concat("&version=" + String(new_version));
+        update_url.concat("&device_id=" + String(get_device_id()));
 
         serial_print_ln("firmware:");
         serial_enum_ln("Current: " + String(firmware_version));
@@ -57,6 +58,7 @@ void _update_handler(bool update_firmware, String new_version)
         serial_enum_ln("Source:  " + String(update_url));
 
         return_value = ESPhttpUpdate.update(client, update_url);
+        serial_info_ln("Update response: " + String(return_value));
     }
     else
     {
@@ -64,9 +66,10 @@ void _update_handler(bool update_firmware, String new_version)
             Filesystem update will overwrite WIFI settings.
             Needs fixing.
         */
-        update_url.concat("?what=spiffs");
+        update_url.concat("?what=filesystem");
         update_url.concat("&for=" + String(board_name));
-        update_url.concat("&get=" + String(new_version));
+        update_url.concat("&version=" + String(new_version));
+        update_url.concat("&device_id=" + String(get_device_id()));
 
         serial_print_ln("SPIFFS:");
         serial_enum_ln("Current: " + String(filesystem_version));
@@ -74,6 +77,7 @@ void _update_handler(bool update_firmware, String new_version)
         serial_enum_ln("Source:  " + String(update_url));
 
         return_value = ESPhttpUpdate.updateSpiffs(client, update_url);
+        serial_info_ln("Update response: " + String(return_value));
     }
 
     switch (return_value)
@@ -81,18 +85,18 @@ void _update_handler(bool update_firmware, String new_version)
         default:
         case HTTP_UPDATE_FAILED:
             serial_error_ln("Update failed (" + String(ESPhttpUpdate.getLastError()) + "): " + ESPhttpUpdate.getLastErrorString().c_str());
+            enter_deep_sleep(cfg.interval);
             break;
         case HTTP_UPDATE_NO_UPDATES:
             serial_warning_ln("No update applied.");
+            enter_deep_sleep(cfg.interval);
             break;
         case HTTP_UPDATE_OK:
             serial_info_ln("Update ok");
+            serial_info_ln("Rebooting to apply new version...");
+            ESP.restart();
             break;
     }
-
-    serial_info_ln("Rebooting to apply new version...");
-    // ESP.reset();
-    ESP.restart();
 }
 
 void update_firmware(String new_version)

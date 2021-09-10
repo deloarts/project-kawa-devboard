@@ -140,60 +140,55 @@ void post_data()
     char json_output[2048];
     DynamicJsonDocument doc(2048);
     JsonObject j_device  = doc.createNestedObject("device");
-    JsonObject j_network  = doc.createNestedObject("network");
     JsonObject j_data  = doc.createNestedObject("data");
-
-    JsonObject j_sensor  = j_device.createNestedObject("sensor");
-    JsonObject j_battery  = j_device.createNestedObject("battery");
-    JsonObject j_interval  = j_device.createNestedObject("interval");
-    JsonObject j_connection  = j_device.createNestedObject("connection_time");
 
     JsonObject j_temperature = j_data.createNestedObject("temperature");
     JsonObject j_pressure = j_data.createNestedObject("pressure");
     JsonObject j_altitude = j_data.createNestedObject("altitude");
     JsonObject j_humidity = j_data.createNestedObject("humidity");
 
-    j_device["id"] = get_device_id();
+    j_device["device_id"] = get_device_id();
+    j_device["location"] = cfg.location;
     j_device["boardname"] = board_name;
     j_device["firmware_version"] = firmware_version;
     j_device["filesystem_version"] = filesystem_version;
     j_device["mode"] = software_state;
+    j_device["sensor_status"] = sensor_ok;
+    j_device["sensor_name"] = cfg.sensor;
+    j_device["battery_available"] = battery_available;
+    j_device["battery_max"] = battery_full;
+    j_device["battery_min"] = battery_too_low;
+    j_device["battery_status"] = voltage.ok;
+    j_device["battery_value"] = voltage.value;
+    j_device["sleep_interval"] = cfg.interval * 60;
+    j_device["connection_time"] = connection_time;
+    j_device["ssid"] = cfg.ssid;
+    j_device["dbm"] = dbm;
+    j_device["quality"] = get_quality_from_dbm(dbm);
+    j_device["hostname"] = get_hostname();
+    j_device["ip_address"] = get_ip_address();
+    j_device["mac_address"] = get_mac_address();
 
-    j_sensor["status"] = sensor_ok;
-    j_sensor["name"] = cfg.sensor;
-
-    j_battery["ok"] = voltage.ok;
-    j_battery["value"] = voltage.value;
-    j_battery["unit"] = voltage.unit;
-
-    j_interval["value"] = cfg.interval * 60;
-    j_interval["unit"] = unit_interval;
-
-    j_connection["value"] = connection_time;
-    j_connection["unit"] = unit_connection;
-
-    j_network["ssid"] = cfg.ssid;
-    j_network["dbm"] = dbm;
-    j_network["quality"] = get_quality_from_dbm(dbm);
-    j_network["hostname"] = get_hostname();
-    j_network["ip"] = get_ip_address();
-    j_network["mac"] = get_mac_address();
-
-    j_temperature["available"] = temperature.available;
-    j_temperature["value"] = temperature.value;
-    j_temperature["unit"] = temperature.unit;
-    
-    j_pressure["available"] = pressure.available;
-    j_pressure["value"] = pressure.value;
-    j_pressure["unit"] = pressure.unit;
-    
-    j_altitude["available"] = altitude.available;
-    j_altitude["value"] = altitude.value;
-    j_altitude["unit"] = altitude.unit;
-    
-    j_humidity["available"] = humidity.available;
-    j_humidity["value"] = humidity.value;
-    j_humidity["unit"] = humidity.unit;
+    if (temperature.available)
+    {
+        j_temperature["value"] = temperature.value;
+        j_temperature["unit"] = temperature.unit;
+    }
+    if (pressure.available)
+    {
+        j_pressure["value"] = pressure.value;
+        j_pressure["unit"] = pressure.unit;
+    }
+    if (altitude.available)
+    {
+        j_altitude["value"] = altitude.value;
+        j_altitude["unit"] = altitude.unit;
+    }
+    if (humidity.available)
+    {
+        j_humidity["value"] = humidity.value;
+        j_humidity["unit"] = humidity.unit;
+    }
 
     serial_info("Serializing json: ");
     serializeJson(doc, json_output);
@@ -205,32 +200,38 @@ void post_data()
 	http.addHeader("Access-Control-Allow-Methods", "POST");
 
 	serial_info_ln("Sending POST request to " + String(url) + " ...");
-    while (response != 200)
+    while (response != 201 && response != 406 && response != 500)
     {
         response = http.POST(json_output);
-        if (response == 200)
+        switch (response)
         {
-            serial_info_ln("OK at attempt " + String(attempt));
-            break;
-        }
-        else
-        {
-            if (attempt > max_retries_post)
-            {
-                serial_error_ln("Aborted because of too many attempts. Server did not answer.");
+            case 201:
+                serial_info_ln("OK at attempt " + String(attempt));
+                break;
+            case 406:
+                serial_info_ln("Failed at attempt " + String(attempt) + " with status code 406: " + http.getString());
                 return;
-            }
-            else
-            {
-                serial_enum_ln("Failed attempt " + String(attempt) + ". New attempt ...");
-                attempt++;
-                /*
-                    The following delay causes about 65mAh of 
-                    power loss. A better solution is required!
-                    Maybe a oneshot without re-attempts?
-                */
-                delay(1000);
-            }
+            case 500:
+                serial_info_ln("Failed at attempt " + String(attempt) + " with status code 500: " + http.getString());
+                return;
+            default:
+                if (attempt > max_retries_post)
+                {
+                    serial_error_ln("Aborted because of too many attempts. Server did not answer.");
+                    return;
+                }
+                else
+                {
+                    serial_enum_ln("Failed attempt " + String(attempt) + ". New attempt ...");
+                    attempt++;
+                    /*
+                        The following delay causes about 65mAh of 
+                        power loss. A better solution is required!
+                        Maybe a oneshot without re-attempts?
+                    */
+                    delay(1000);
+                }
+                break;
         }
     }
 
@@ -240,7 +241,7 @@ void post_data()
     serial_info("Server answer: ");
     serial_print_ln(server_answer);
 
-    DynamicJsonDocument json_doc_root(128);
+    DynamicJsonDocument json_doc_root(1024);
     deserializeJson(json_doc_root, server_answer);
     JsonObject j_root = json_doc_root.as<JsonObject>();
 
