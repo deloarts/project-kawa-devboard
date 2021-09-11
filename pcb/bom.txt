@@ -1,0 +1,18 @@
+Qty Value                           Device                          Package                  Parts                           Description                          
+1                                   ESP-12                          ESP-12                   X1                                                                   
+1                                   LEDSFH480                       SFH480                   LED1                            LED                                  
+1                                   MA03-1                          MA03-1                   VOLTAGE                         PIN HEADER                           
+1                                   MA06-1                          MA06-1                   BME280                          PIN HEADER                           
+4                                   PINHD-1X2/90                    1X02/90                  JP_BTN1, JP_BTN2, JP_BTN3, PWR  PIN HEADER                           
+2                                   PINHD-1X3                       1X03                     SELECT1, UART                   PIN HEADER                           
+1                                   PINHD-1X3/90                    1X03/90                  ONEWIRE                         PIN HEADER                           
+1                                   PINHD-1X4                       1X04                     I2C                             PIN HEADER                           
+6   100nF 50V                       C2,5-3                          C2.5-3                   C3, C4, C5, C6, C7, C8          CAPACITOR                            
+4   10K                             R-EU_0204/7                     0204/7                   R1, R2, R3, R9                  RESISTOR, European symbol            
+2   10uF 100V                       CPOL-EUE2-5                     E2-5                     C1, C2                          POLARIZED CAPACITOR, European symbol 
+1   390                             R-EU_0204/7                     0204/7                   R8                              RESISTOR, European symbol            
+1   3K9                             R-EU_0204/7                     0204/7                   R7                              RESISTOR, European symbol            
+2   4K7                             R-EU_0204/7                     0204/7                   R4, R5                          RESISTOR, European symbol            
+1   MCP1700-3302E/TO                MCP1700-3302E/TO                TO127P254X495-3          U1                              IC LDO REG 250MA 5.0V Check prices   
+5   MOMENTARY-SWITCH-SPST-PTH-6.0MM MOMENTARY-SWITCH-SPST-PTH-6.0MM TACTILE_SWITCH_PTH_6.0MM BTN1, BTN2, BTN3, RESET, UPLOAD Momentary Switch (Pushbutton) - SPST 
+1   SK-12D07                        SK-12D07                        SK12SWITCH               SW1                                                                  
