@@ -9,7 +9,7 @@
 */
 
 #define board_name "devboard"
-#define firmware_version "0.1.0"
+#define firmware_version "0.1.1"
 #define filesystem_version "0.1.0"
 
 /*
@@ -79,7 +79,7 @@
 // Power & deep sleep
 #define battery_available true
 #define battery_full 3.4
-#define battery_too_low 3.1
+#define battery_too_low 3.29
 #define default_sleep_interval 60 //minutes
 
 // Units

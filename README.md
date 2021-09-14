@@ -3,7 +3,7 @@
 Documentation for the **Project Kawa Devboard**. This repository contains everything the Wifi-Client requires, including code, circuit design and housing.
 
 ![state](https://img.shields.io/badge/State-Alpha-brown.svg)
-![version](https://img.shields.io/badge/Firmware-0.1.0-orange.svg)
+![version](https://img.shields.io/badge/Firmware-0.1.1-orange.svg)
 ![version](https://img.shields.io/badge/Filesystem-0.1.0-orange.svg)
 ![version](https://img.shields.io/badge/PCB-Rev0-orange.svg)
 ![version](https://img.shields.io/badge/Housing-Rev0-orange.svg)
@@ -311,6 +311,7 @@ All content on this repository is provided **as is**. None of these components h
 
 ### 7.1 Firmware
 
+**v0.1.1**: Updated battery range.  
 **v0.1.0**: Added location and updated api.  
 **v0.0.0**: Creation.
 
@@ -333,6 +334,7 @@ All content on this repository is provided **as is**. None of these components h
 - [ ] Fix: Slow/laggy captive portal.
 - [ ] Fix: Replace FS with LittleFS.
 - [ ] Fix: Allow only one client at the captive portal.
+- [ ] Replace: Change frontend to Vue CLI.
 - [ ] Add: Switch sensor.
 - [ ] Add: Air quality sensor.
 - [ ] Add: Rain sensor (amount and state).
