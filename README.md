@@ -6,7 +6,7 @@ Documentation for the **Project Kawa Devboard**. This repository contains everyt
 ![version](https://img.shields.io/badge/Firmware-0.1.1-orange.svg)
 ![version](https://img.shields.io/badge/Filesystem-0.1.0-orange.svg)
 ![version](https://img.shields.io/badge/PCB-Rev0-orange.svg)
-![version](https://img.shields.io/badge/Housing-Rev0-orange.svg)
+![version](https://img.shields.io/badge/Housing-Rev1-orange.svg)
 
 [![made-with](https://img.shields.io/badge/Made%20with-Arduino-blue.svg)](https://www.arduino.cc/)
 [![arduino-version](https://img.shields.io/badge/Version-1.8.15-orange.svg)](https://www.arduino.cc/en/software)
@@ -326,6 +326,7 @@ All content on this repository is provided **as is**. None of these components h
 
 ### 7.4 Housing
 
+**Rev1**: Updated for FFF.  
 **Rev0**: Creation.
 
 ## 8 To Do
