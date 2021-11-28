@@ -9,7 +9,7 @@
 */
 
 #define board_name "devboard"
-#define firmware_version "0.1.1"
+#define firmware_version "0.1.2"
 #define filesystem_version "0.1.0"
 
 /*

@@ -22,8 +22,8 @@
 
 	LIBRARY                 VERSION         INSTALLATION VIA            LINKS
 	esp8266                 3.0.0           Arduino Board Manager       http://arduino.esp8266.com/stable/package_esp8266com_index.json
-    ArduinoJson             6.18.0          Arduino Library Manager     https://arduinojson.org/?utm_source=meta&utm_medium=library.properties
-	OneWire                 2.3.3           Arduino Library Manager     https://www.pjrc.com/teensy/td_libs_OneWire.html
+    ArduinoJson             6.18.5          Arduino Library Manager     https://arduinojson.org/?utm_source=meta&utm_medium=library.properties
+	OneWire                 2.3.6           Arduino Library Manager     https://www.pjrc.com/teensy/td_libs_OneWire.html
     DallasTemperature       3.9.0           Arduino Library Manager     https://github.com/milesburton/Arduino-Temperature-Control-Library
     Unified Sensor          1.1.4           Arduino Library Manager     https://github.com/adafruit/Adafruit_Sensor
     Adafruit_BME280         2.1.4 (mod)     Assets Folder               h̶t̶t̶p̶s̶:̶/̶/̶g̶i̶t̶h̶u̶b̶.̶c̶o̶m̶/̶a̶d̶a̶f̶r̶u̶i̶t̶/̶A̶d̶a̶f̶r̶u̶i̶t̶_̶B̶M̶E̶2̶8̶0̶_̶L̶i̶b̶r̶a̶r̶y̶
