@@ -17,11 +17,13 @@ Documentation for the **Project Kawa Devboard**. This repository contains everyt
 ![made-for](https://img.shields.io/badge/Made%20for-ESP8266-blue.svg)
 ![esp-version](https://img.shields.io/badge/Version-ESP12F-orange.svg)
 
-![windows](https://img.shields.io/badge/Windows-Supported-green.svg)
-![linux](https://img.shields.io/badge/Linux-Not%20tested-red.svg)
-![mac](https://img.shields.io/badge/Mac-Not%20tested-red.svg)
-
 ![title.jpg](assets/title.jpg)
+
+> ⚠️ The Kawa Devboard is part of my condition monitoring project - Project Kawa - which isn't public. However, this repo is public, because the development board itself works pretty well after a long-term test of now over a year. You can use this board for your own project, if it fits your needs.
+> 
+> ✏️ The board is compatible with most open source home-automation systems, so feel free to use this board for other appliances than the Project Kawa.
+>
+> ✏️ In this repo you'll find not only the hardware of the devboard, but also the source. Keep in mind that the code is written for the Project Kawa Server, which isn't public, but feel free to tweak it for your own application.
 
 ## Table of contents
 
@@ -41,15 +43,15 @@ Documentation for the **Project Kawa Devboard**. This repository contains everyt
     - [4.2 VS-Code setup](#42-vs-code-setup)
       - [4.2.1 code-workspace](#421-code-workspace)
       - [4.2.2 arduino.json](#422-arduinojson)
-      - [4.2.3 c_cpp_properties.json](#423-c_cpp_propertiesjson)
+      - [4.2.3 c\_cpp\_properties.json](#423-c_cpp_propertiesjson)
     - [4.3 Eagle libraries](#43-eagle-libraries)
-  - [5 Building & Debugging](#5-building--debugging)
+  - [5 Building \& Debugging](#5-building--debugging)
     - [5.1 Initial upload](#51-initial-upload)
     - [5.2 OTA upload](#52-ota-upload)
     - [5.3 Build the firmware](#53-build-the-firmware)
     - [5.4 Build the filesystem](#54-build-the-filesystem)
     - [5.5 Debug](#55-debug)
-  - [6 License & Disclaimer](#6-license--disclaimer)
+  - [6 License \& Disclaimer](#6-license--disclaimer)
   - [7 Changelog](#7-changelog)
     - [7.1 Firmware](#71-firmware)
     - [7.2 Filesystem](#72-filesystem)
@@ -303,7 +305,7 @@ To debug the captive portal content (files inside the [data folder](code/src/dat
 
 ## 6 License & Disclaimer
 
-No license. Currently closed source.
+MIT.
 
 All content on this repository is provided **as is**. None of these components have been tested or certified. The use of this content is **at your own risk**.
 
